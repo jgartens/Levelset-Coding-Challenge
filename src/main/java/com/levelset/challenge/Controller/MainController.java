@@ -1,18 +1,11 @@
 package com.levelset.challenge.Controller;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
+import java.util.List;
 import com.levelset.challenge.Model.Customer;
 import com.levelset.challenge.Model.Project;
 import com.levelset.challenge.Repository.ProjectRepository;
 import com.levelset.challenge.Service.ProjectService;
-
-import org.hibernate.boot.model.source.internal.hbm.CommaSeparatedStringHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,10 +27,9 @@ public class MainController {
 
     @GetMapping("/")
     public String home(){
-
-  
         return "home.html";
     }
+
 
     @PostMapping("/")
     public String submitCSV(@RequestParam("file") MultipartFile file, Model model){
@@ -54,6 +46,8 @@ public class MainController {
         if (model.containsAttribute("errorMsg")){
             return "home.html";
         }
+
+        //search for projects from this import
         List<Project> currentProjects = projectRepository.findByIdIn(currentProject_ids);
 
         model.addAttribute("projects", currentProjects);
@@ -63,8 +57,8 @@ public class MainController {
 
     @GetMapping("/report/saved")
     public String getSavedReports(Model model){
+        //get all saved files
         List<Project> allProjects = projectRepository.findAll();
-
         model.addAttribute("projects", allProjects);
         return "projects.html";
     }
@@ -72,8 +66,7 @@ public class MainController {
     @GetMapping("/customer/{customer_id}")
     public String getCustomerReport(@PathVariable(value = "customer_id") String customer_name, Model model){
         List<Project> customer_projects = projectRepository.findByCustomerName(customer_name);
-        System.out.println(customer_projects);
-        System.out.println(customer_name);
+
         if (!customer_projects.isEmpty()){
             double totalDebt = 0;
             int totalOrders = 0;
@@ -104,10 +97,9 @@ public class MainController {
 
 
     @PostMapping("/customer/{customer_id}")
-    public String getCustomerReportFromName(@RequestParam("customer") String customer_name, Model model){
+    public String getCustomerReportFromName(@RequestParam("customer_id") String customer_name, Model model){
         List<Project> customer_projects = projectRepository.findByCustomerName(customer_name);
-        System.out.println(customer_projects);
-        System.out.println("HERE THO");
+   
         if (!customer_projects.isEmpty()){
             double totalDebt = 0;
             int totalOrders = 0;
@@ -130,7 +122,9 @@ public class MainController {
         }
 
         else{
-
+            //get all saved files
+            List<Project> allProjects = projectRepository.findAll();
+            model.addAttribute("projects", allProjects);
             model.addAttribute("errorMsg", "Customer was not found, please try again");
             return "projects.html";
         }  
