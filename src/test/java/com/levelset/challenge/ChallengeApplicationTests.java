@@ -38,8 +38,8 @@ class ChallengeApplicationTests {
 		// && !date.matches("[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9]")
 		// && !date.matches("[0-9][0-9][0-9][0-9]-[0-9]-[0-9]")));
 	   
-		String string= "ohiwrejkfsd";
-		assertEquals(true, string.contains("[a-zA-Z]"));
+		// String string= "ohiwrejkfsd";
+		// assertEquals(true, string.contains("[a-zA-Z]"));
 		
 	}
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Page</title>
+</head>
+<body>
+
+   <h3>  <span th:text="${customer.name}"></span></h3>	
+    <br>
+    <h4> Total outstanding debt: </h4>
+   <h4>  <span th:text="${customer.totalDebt}"></span></h4>	
+   <br>
+    <h4> Total number of orders: </h4>
+   <h4>  <span th:text="${customer.totalOrders}"></span></h4>	
+
+    <br>
+    <h4> Total number of projects: </h4>
+   <h4>  <span th:text="${customer.totalProjects}"></span></h4>	
+   <br>
+
+    <form action="/customer/{customer_id}" method="post">
+        <p>Search A Different Customer</p>
+        <input type="text" id="customer" name = "customer_id" text="Enter customer name">
+        <br>
+        <input type="submit" value="submit">
+    </form>
+    <br>
+
+    <a th:href="@{/}"> Enter Another CV</a>
+    <!-- <a th:href="@{/customer/}  -->
+
+    <br>
+    <form action="/report/saved" method="get">
+        <p>Click to view all saved data report</p>
+        <input type="submit" value="submit">
+    </form>
+    
+
+</body>
+</html>

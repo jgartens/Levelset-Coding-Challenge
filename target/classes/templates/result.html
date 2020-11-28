@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Thanks For Your Submission</h1>
+
+        <div th:if = "${errorMsg}">
+            <div th:text="${errorMsg}">Hi, User</div>
+        </div>
+        <br>
+        <div th:if = "${rowError}">
+            <div th:text="${rowError}" style= "color:red">Hi, User</div>
+        </div>
+
+    
+        <br>
+        <form action="/report/saved" method="get">
+            <p>Click to view all saved data report</p>
+            <input type="submit" value="submit">
+        </form>
+        <br>
+        <form action="/customer/{customer_id}" method="post">
+            <p>Search By Customer</p>
+            <input type="text" id="customer" name = "customer_id" text="Enter customer name">
+            <br>
+            <input type="submit" value="submit">
+        </form>
+        <br>
+
+        <div class="row">
+            <h2 style="text-decoration: underline;">Imported Projects</h2>
+            
+            <div th:each="project:${projects}">
+                <div class="row" style="align-items: center;">
+                    <div class="column">
+                        <h3>Customer: </h3>
+                        <a th:href="@{/customer/} + ${project.getCustomerName()}" >
+                            <h3>  <span th:text="${project.getCustomerName()}"></span></h3>	
+                        </a>
+        
+                    </div>
+                    <div class="column">
+                        <h3> Project Name: </h3>
+                        <h4>  <span th:text="${project.getName()}"></span></h4>	
+                    </div>
+                  <div class="column">
+                        <h3>Active Orders: </h3>
+
+                        <div th:if="${project.getLien() != null}"> 
+                            <h4>Lien </h4>
+                            <h5>  deadline: <span th:text="${project.getLien()}"></span></h5>	
+                        </div>
+                   
+                        <div th:if="${project.getNotice() != null}"> 
+                            <h4>Notice </h4>
+                            <h5>  deadline: <span th:text="${project.getNotice()}"></span></h5>	
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

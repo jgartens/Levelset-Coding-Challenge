@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+    <h1 style="text-decoration: underline;">Saved Projects Page</h1>
+
+    <div th:if = "${errorMsg}">
+        <div th:text="${errorMsg}" style="color:red">Hi, User</div>
+    </div>
+    <br>
+    <form action="/customer/{customer_id}" method="post">
+        <p>Search By Customer</p>
+        <input type="text" id="customer" name = "customer_id" text="Enter customer name">
+        <br>
+        <input type="submit" value="submit">
+    </form>
+    <br>
+
+    <a th:href="@{/}"> Enter Another CV</a>
+
+    <br>
+
+    <div class="container">
+        <h2>Saved Projects</h2>
+        <div th:each="project:${projects}">
+            <div class="row">
+                <div id="short-column">
+                    <h3>Customer: </h3>
+                    <a th:href="@{/customer/} + ${project.getCustomerName()}" >
+                        <h3>  <span th:text="${project.getCustomerName()}"></span></h3>	
+                    </a>
+    
+                </div>
+                <div id="short-column">
+                    <h3> Project Name: </h3>
+                    <h4>  <span th:text="${project.getName()}"></span></h4>	
+                </div>
+                <div id="column">
+                    <h3> Project Address: </h3>
+                    <h4>  <span th:text="${project.getAddress()}"></span>, <span th:text="${project.getCity()}"></span>
+                        <span th:text="${project.getState()}"></span>, <span th:text="${project.getZip()}"></span></h4>	
+                </div>
+                <div id="column">
+                    <h3>  Start Date: </h3>
+                    <h4>  <span th:text="${project.getStartDate()}"></span></h4>	
+
+                    <h3> Commencement Date: </h3>
+                    <h4>  <span th:text="${project.getCommencementDate()}"></span></h4>
+                </div>
+                <div id="column">
+                    <h3> Outstanding Debt </h3>
+                    <h4>  <span th:text="${project.getOustandingDebt()}"></span></h4>	
+                </div>
+                
+              <div id="column">
+                    <h3>Active Orders: </h3>
+
+                    <div th:if="${project.getLien() != null}"> 
+                        <h4>Lien </h4>
+                        <h5>  deadline: <span th:text="${project.getLien()}"></span></h5>	
+                    </div>
+               
+                    <div th:if="${project.getNotice() != null}"> 
+                        <h4>Notice </h4>
+                        <h5>  deadline: <span th:text="${project.getNotice()}"></span></h5>	
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+    
+</body>
+</html>
