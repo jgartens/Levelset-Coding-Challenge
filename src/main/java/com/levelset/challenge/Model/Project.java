@@ -1,24 +1,11 @@
 package com.levelset.challenge.Model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Generated;
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.persistence.JoinColumn;
+
 
 import org.hibernate.validator.constraints.Length;
 
@@ -29,25 +16,19 @@ public class Project {
     @Id
     @Column(name="project_id")
     private Long id;
-
    
     private String customerName;
 
-    
     private String name;
-
     
     private String address;
-
    
     private String city;
  
     @Length(max = 2)
     private String state;
 
-    
     private int zip;
-
    
     private LocalDate startDate;
 
@@ -55,15 +36,11 @@ public class Project {
 
     private LocalDate commencementDate;
 
-    // @OneToMany(mappedBy = "project", cascade = {
-    //     CascadeType.MERGE
-    // })
-    // private List<Order> orders;
-
     private LocalDate notice;
 
     private LocalDate lien;
     
+
     public Project() {
     }
 
@@ -147,15 +124,7 @@ public class Project {
     public void setCommencementDate(LocalDate commencementDate) {
         this.commencementDate = commencementDate;
     }
-
-
-    // public List<Order> getOrders() {
-    //     return orders;
-    // }
-
-    // public void setOrders(List<Order> orders) {
-    //     this.orders = orders;
-    // }
+    
 
     public LocalDate getNotice() {
         return notice;
