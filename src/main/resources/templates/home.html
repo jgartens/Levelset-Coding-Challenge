@@ -13,6 +13,12 @@
         <input type="submit" value="submit">
     </form>
 
+    <br>
+
+    <div th:if = "${errorMsg}">
+        <div th:text="${errorMsg}" style="color: red;">Hi, User</div>
+    </div>
+
     
 </body>
 </html>
