@@ -4,7 +4,8 @@ Levelset's Coding Challenge as part of an application for a Software Development
 
 To Run The Application:
 
-Make sure you have Java 11 or later installed
+Make sure you have the latest version of java (JDK) installed
+https://www.oracle.com/java/technologies/javase-downloads.html
 
 Clone or download the repository into a folder of your choosing.  Navigate into that folder on your command line and execute the following command:
 
