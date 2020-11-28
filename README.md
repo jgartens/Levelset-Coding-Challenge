@@ -7,10 +7,11 @@ To Run The Application:
 Make sure you have the latest version of java (JDK) installed
 https://www.oracle.com/java/technologies/javase-downloads.html
 
-Clone or download the repository into a folder of your choosing.  Navigate into that folder on your command line and execute the following command:
+Clone or download the repository into a folder of your choosing.  From the base in your command line (on a mac), run the following command:
 
-/Library/Java/JavaVirtualMachines/jdk-15.jdk/Contents/Home/bin/java -XX:+ShowCodeDetailsInExceptionMessages -Dfile.encoding=UTF-8 @/var/folders/pk/p6hbf3s14pl8vgmmgtdrhqrh0000gn/T/cp_drxzq8slbo0est2k606yu8qwv.argfile com.levelset.challenge.ChallengeApplication
-{spring.web.resources.chain.cache=false, spring.web.resources.cache.period=0}
+java -jar /PATHTOYOURFOLDER/Levelset-Coding-Challenge-main/target/challenge-0.0.1-SNAPSHOT.jar
+
+If it's not working, make sure that your path and folder names are correct ^^ up to the target folder, which shouldn't have been changed.
 
 Go to the web address specified in your terminal when the program finishes outputting (probably localhost:8080)
 
