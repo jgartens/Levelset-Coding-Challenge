@@ -1,0 +1,24 @@
+/* Float four columns side by side */
+.column {
+    float: left;
+    width: 30%;
+    padding-left: 10px;
+  }
+
+#column {
+  float: left;
+  width: 21%;
+  padding-left: 10px;
+}
+
+#short-column {
+  float: left;
+  width: 12%;
+  padding-left: 10px;
+}
+
+.row {
+  margin: 0 -10px;
+  padding-left: 10px;
+  padding-bottom: 30px;
+}
