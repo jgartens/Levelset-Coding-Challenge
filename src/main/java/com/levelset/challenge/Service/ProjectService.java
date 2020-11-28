@@ -47,6 +47,7 @@ public class ProjectService {
         List<String> columns = projects.get(0);
         List<Long> currentProjects = new ArrayList<Long>();
 
+        //if CSV contains a header row
         if (columns.containsAll(Arrays.asList("Customer Name", "Project Name", "Project Address", "Project City",
                 "Project State", "Project Zip", "Project Start Date"))) {
             for (int i = 1; i < projects.size(); i++) {
@@ -57,7 +58,20 @@ public class ProjectService {
                 }
                 
             }
-        } else {
+        } 
+        //if CSV doesn't contain a header row
+        else if( columns.size() > 6 && columns.size() < 10){
+            for (int i = 0; i < projects.size(); i++) {
+                
+                Long project_id = createProjectFromRow(projects.get(i), model);
+                if (project_id != null){
+                    currentProjects.add(project_id);
+                }
+                
+            }
+        }
+        //CSV is not correct format
+        else {
             model.addAttribute("errorMsg", "Missing one or more required columns");
             return null;
         }
@@ -95,7 +109,6 @@ public class ProjectService {
     }
     
 
-    // method to check that all required paramters are present and valid
     private boolean checkForValid(List<String> row) {
         //if entry is invalid length
         if (row.size() < 7 || row.size() > 9){
@@ -135,7 +148,7 @@ public class ProjectService {
             row.add("0");
             row.add(LocalDate.now().toString());
         }
-        //if some non-required data is included
+        //some non-required data is included
         else if (row.size() == 8){
             //if valid amount is included
             if (row.get(7).matches("[0-9]+.[0-9]+") || row.get(7).matches("[0-9]+")
