@@ -22,7 +22,7 @@ public class ProjectService {
     @Autowired
     private OrderService orderService;
 
-    public Model parseCSV(MultipartFile file, Model model) {
+    public List<Long> parseCSV(MultipartFile file, Model model) {
 
         // Attempt to parse CSV into a list of Strings
         List<List<String>> projects = new ArrayList<>();
@@ -40,7 +40,7 @@ public class ProjectService {
         } catch (Exception ex) {
             model.addAttribute("errorMsg", "Error processing csv file. Please try again.");
    
-            return model;
+            return null;
         }
 
         // check to see if required columns are in CSV
@@ -59,10 +59,10 @@ public class ProjectService {
             }
         } else {
             model.addAttribute("errorMsg", "Missing one or more required columns");
-            return model;
+            return null;
         }
 
-        return model;
+        return currentProjects;
     }
 
     private Long createProjectFromRow(List<String> row, Model model) {
@@ -201,6 +201,7 @@ public class ProjectService {
             old_project.setName(project.getName());
             old_project.setStartDate(project.getStartDate());
             old_project.setCommencementDate(project.getCommencementDate());
+            old_project.setOustandingDebt(project.getOustandingDebt());
             old_project.setNotice(project.getNotice());
             old_project.setLien(project.getLien());
             projectRepository.save(old_project);
